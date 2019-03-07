@@ -86,30 +86,6 @@ void setup()
     String username = "freepromsoftware@gmail.com";
     String password = "alex102599";
     GIS.loginProcess(username, password);
-    
-    /*
-    //get Salary Value
-    String jobtitle = "electrical engineer";
-    String state = "Missouri";
-    String value = GIS.searchPosition( jobtitle, state );
-    System.out.println( "Salary at Missouri : " +value );
-    
-    state = "Colorado";
-    value = GIS.searchPosition( jobtitle, state );
-    System.out.println( "Salary at Colorado : " + value );
-    */
-  }
-  
-void draw()
-  {
-    background( 255 );
-    stroke( 0 );
-    fill( 0 );
-    text( "click to start", 250, 250 );
-  }
-
-void mousePressed()
-  {
     crunchObj = new CrunchBase();
     crunchObj.init();
     crunchObj.loginToCrunchBase("freepromsoftware@gmail.com", "alex102599");
@@ -150,6 +126,10 @@ void mousePressed()
     DRON.ScrapeConnections();
     
     crunchObj.driverClose();
+  }
+  
+void draw()
+  {
   }
   
 String Rotate()
