@@ -297,6 +297,7 @@ class LinkedinDron
                         String Phone = "";
                         String PhoneTapered = "";
                         String Email = "";
+                        String Linkedin = driver.getCurrentUrl();
                         
                         Thread.sleep( 5000 );
                         
