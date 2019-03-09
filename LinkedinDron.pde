@@ -376,6 +376,7 @@ class LinkedinDron
                             CONTACT.setString( "Phone Tapered", PhoneTapered );
                             CONTACT.setString( "Phone Full", Phone.replace( ",", "" ) );
                             CONTACT.setString( "Email", Email.replace( ",", "" ) );
+                            CONTACT.setString( "Email", Linkedin.replace( ",", "" ) );
                             
                             DEMOGRAPHIC.setJSONObject( "Contact", CONTACT );
                           }
