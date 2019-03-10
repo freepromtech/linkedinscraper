@@ -30,6 +30,49 @@ class LinkedinDron
         ExecuteJavaScript( js, "document.getElementById( \"login-submit\" ).click();" );
       }
       
+    int SearchBySchool( String SCHOOL )
+      {
+        char hash = ( char ) random( ( int ) 'a', ( int ) 'z' );
+        driver.get( "https://www.linkedin.com/search/results/people/?facetNetwork=%5B\"S\"%5D&origin=FACETED_SEARCH&title="+hash+"&school="+SCHOOL );
+        
+        int s_alt = 0;
+        
+        try
+          {
+            Document doc = Jsoup.parse( driver.getPageSource() );
+            
+            String COMPANY_ID = ( doc.getElementsByClass( "search-result__result-link ember-view" ).get( 0 ).attr( "href" ).replace( "/company/", "" ).replace( "/", "" ) );
+            
+            
+            Document search_result = Jsoup.parse( driver.getPageSource() );
+            
+            int s = search_result.getElementsByClass( "search-result__action-button search-result__actions--primary button-secondary-medium m5" ).size();
+            
+            for( int i = 0; i < s; i++ )
+              {
+                ExecuteJavaScript( js, "document.getElementsByClassName( \"search-result__action-button search-result__actions--primary button-secondary-medium m5\" )["+i+"].click()" );
+                ExecuteJavaScript( js, "document.getElementsByClassName( \"button-primary-large ml1\" )[ 0 ].click()" );
+                s_alt++;
+              }
+              
+            return s;
+          }
+        catch( Exception e )
+          {
+            return s_alt;
+          }
+      }
+      
+    void AddTotalAtSchool( String SCHOOL, int total )
+      {
+        int current = 0;
+        
+        while( current < total )
+          {
+            current += SearchBySchool( SCHOOL );
+          }
+      }
+      
     void SearchByCompany( String COMPANY, String TITLE )
       {
         driver.get( "https://www.linkedin.com/search/results/companies/?keywords="+COMPANY.replace( " ", "+" )+"&origin=GLOBAL_SEARCH_HEADER" );
